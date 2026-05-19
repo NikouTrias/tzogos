@@ -1,1 +1,180 @@
+/* Base Page Reset & Arcade Background */
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle, #1a1525 0%, #0c0813 100%);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
 
+/* The Physical Slot Machine Cabinet */
+.machine-container {
+    background: #1e1b29;
+    border: 4px solid #3d1e6d;
+    border-radius: 24px;
+    padding: 30px;
+    width: 380px;
+    box-shadow: 
+        0 0 30px rgba(157, 78, 221, 0.3),
+        inset 0 0 15px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    position: relative;
+}
+
+/* Neon Header Trim */
+.machine-container::before {
+    content: "CASINO ROYALE";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #12101c;
+    padding: 2px 20px;
+    color: #00f5d4;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 2px;
+    border: 2px solid #00f5d4;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00f5d4;
+}
+
+/* The Dashboard Panel (Stats/Readouts) */
+.display-panel {
+    background: #0d0b14;
+    border: 2px solid rgba(157, 78, 221, 0.8);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    margin-top: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+}
+
+.display-panel div {
+    color: #ff007f;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #ff007f;
+}
+
+.display-panel span {
+    display: block;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 4px;
+    text-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
+
+/* The 3x3 Grid Matrix Window */
+.slot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    background: #12101a;
+    padding: 15px;
+    border-radius: 16px;
+    border: 3px solid #7b2cbf;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+    margin-bottom: 30px;
+}
+
+/* Individual Slot Cells */
+.cell {
+    background: linear-gradient(145deg, #2c2541, #181426);
+    border: 1px solid #4a3b6e;
+    border-radius: 12px;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 42px;
+    user-select: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+    transition: transform 0.1s ease, border-color 0.2s ease;
+}
+
+/* Control Row Setup */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* Interactive Buttons */
+button {
+    background: linear-gradient(180deg, #3a0ca3 0%, #240046 100%);
+    border: 2px solid #7209b7;
+    color: #fff;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #1a0033, 0 8px 10px rgba(0,0,0,0.5);
+    transition: all 0.1s ease;
+    flex: 1;
+}
+
+button:hover {
+    background: linear-gradient(180deg, #4361ee 0%, #3a0ca3 100%);
+    border-color: #4cc9f0;
+}
+
+button:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #1a0033, 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* Main Action Spin Button */
+#btn-spin {
+    background: linear-gradient(180deg, #ff007f 0%, #9e0059 100%);
+    border-color: rgba(255, 92, 171, 0.6);
+    flex: 1.5;
+    text-shadow: 0 0 5px #fff;
+    box-shadow: 0 5px 0 #5c0034, 0 8px 10px rgba(255, 0, 127, 0.2);
+}
+
+#btn-spin:hover {
+    background: linear-gradient(180deg, #ff5c00 0%, #ff007f 100%);
+    border-color: #ff9e00;
+    box-shadow: 0 5px 0 #5c0034, 0 8px 15px rgba(255, 92, 0, 0.4);
+}
+
+#btn-spin:disabled {
+    background: #444;
+    border-color: #555;
+    color: #888;
+    box-shadow: none;
+    transform: translateY(4px);
+    cursor: not-allowed;
+}
+
+/* CSS Animation for Rotating Blur */
+.spinning {
+    animation: blurSpin 0.12s infinite linear;
+}
+
+@keyframes blurSpin {
+    0% { transform: translateY(-8px); filter: blur(2px); }
+    50% { transform: translateY(8px); filter: blur(6px); }
+    100% { transform: translateY(-8px); filter: blur(2px); }
+}
+
+/* Highlight Animation for Payline Winning Cells */
+.winner-glow {
+    animation: pulseGlow 0.4s infinite alternate;
+    border-color: #00f5d4;
+    background: linear-gradient(145deg, #1b3d39, #0e2421);
+    z-index: 2;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 5px #00f5d4; transform: scale(1); }
+    100% { box-shadow: 0 0 20px #00f5d4; transform: scale(1.04); }
+}
